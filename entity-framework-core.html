@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entity Framework Core Tutorial - CRUD, Migrations & Database Access</title>
+
+    <meta name="description"
+          content="Learn Entity Framework Core in C# including database access, CRUD operations, migrations, relationships, and performance optimization with practical examples.">
+
+    <meta name="keywords"
+          content="Entity Framework Core, EF Core tutorial, C# database access, EF Core CRUD, EF Core migrations, ASP.NET Core database, .NET ORM, Entity Framework relationships, LINQ to Entities, C# database tutorial">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="canonical" href="https://csharpdevhub.github.io/tutorial.github.io">
+
+    <!-- Google AdSense -->
+    <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html">
+                    C# Tutorials
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="privacy.html">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms-of-service.html">Terms</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="disclaimer.html">Disclaimer</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+
+            <!-- Top Ad -->
+            <div class="ad-container">
+                <!-- Replace with AdSense Ad Unit -->
+            </div>
+
+
+
+
+          <h1>Entity Framework Core (EF Core)</h1>
+
+<p>
+    Entity Framework Core (EF Core) is a modern Object-Relational Mapper (ORM)
+    for .NET that allows developers to interact with databases using C# objects
+    instead of writing raw SQL queries.
+</p>
+
+<p>
+    It simplifies data access by providing built-in support for CRUD operations,
+    database migrations, relationships, and LINQ-based queries.
+</p>
+
+<p>
+    EF Core is widely used in ASP.NET Core applications for building scalable,
+    data-driven web applications efficiently and with less code.
+</p>
+
+<h2>What You Will Learn</h2>
+
+<ul>
+    <li>Database access using EF Core</li>
+    <li>CRUD operations (Create, Read, Update, Delete)</li>
+    <li>Database migrations</li>
+    <li>One-to-one, one-to-many, and many-to-many relationships</li>
+    <li>LINQ queries with EF Core</li>
+    <li>Performance optimization techniques</li>
+</ul>
+
+<h2>What is Entity Framework Core?</h2>
+
+<p>
+    Entity Framework Core is an open-source ORM framework that acts as a bridge
+    between your application and the database.
+</p>
+
+<p>
+    Instead of writing SQL queries manually, developers work with C# classes
+    and objects that represent database tables.
+</p>
+
+<h2>Example: Basic Model</h2>
+
+<pre><code>
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+}
+</code></pre>
+
+<h2>DbContext Example</h2>
+
+<pre><code>
+public class AppDbContext : DbContext
+{
+    public DbSet&lt;Product&gt; Products { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    {
+        options.UseSqlServer("YourConnectionStringHere");
+    }
+}
+</code></pre>
+
+<h2>CRUD Operations</h2>
+
+<h3>Create</h3>
+
+<pre><code>
+var product = new Product { Name = "Laptop", Price = 1200 };
+
+context.Products.Add(product);
+context.SaveChanges();
+</code></pre>
+
+<h3>Read</h3>
+
+<pre><code>
+var products = context.Products.ToList();
+</code></pre>
+
+<h3>Update</h3>
+
+<pre><code>
+var product = context.Products.First();
+product.Price = 1500;
+
+context.SaveChanges();
+</code></pre>
+
+<h3>Delete</h3>
+
+<pre><code>
+var product = context.Products.First();
+context.Products.Remove(product);
+
+context.SaveChanges();
+</code></pre>
+
+<h2>Database Migrations</h2>
+
+<p>
+    Migrations allow you to update your database schema without losing data.
+</p>
+
+<pre><code>
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+</code></pre>
+
+<h2>Relationships in EF Core</h2>
+
+<p>
+    EF Core supports different types of relationships such as one-to-one,
+    one-to-many, and many-to-many relationships.
+</p>
+
+<h2>Why Use EF Core?</h2>
+
+<ul>
+    <li>Reduces need for raw SQL</li>
+    <li>Improves development speed</li>
+    <li>Supports LINQ queries</li>
+    <li>Easy database migrations</li>
+    <li>Works seamlessly with ASP.NET Core</li>
+</ul>
+
+<h2>Best Practices</h2>
+
+<ul>
+    <li>Use async methods for database operations</li>
+    <li>Avoid unnecessary database calls</li>
+    <li>Use DTOs for data transfer</li>
+    <li>Optimize queries with LINQ</li>
+    <li>Keep DbContext lifetime short</li>
+</ul>
+
+<h2>Conclusion</h2>
+
+<p>
+    Entity Framework Core is a powerful tool for modern .NET development.
+    It simplifies database access, improves productivity, and integrates
+    seamlessly with ASP.NET Core applications.
+</p>
+
+<p>
+    By mastering EF Core, you can build scalable, efficient, and maintainable
+    data-driven applications.
+</p>
+
+<h2>Related Tutorials</h2>
+
+<ul>
+    <li><a href="csharp-basics.html">C# Basics</a></li>
+    <li><a href="linq-in-csharp.html">LINQ in C#</a></li>
+    <li><a href="dependency-injection-in-aspnet-core.html">Dependency Injection in ASP.NET Core</a></li>
+    <li><a href="logging-in-aspnet-core.html">Logging in ASP.NET Core</a></li>
+</ul>
+   
+
+
+            
+            <!-- Bottom Ad -->
+            <div class="ad-container">
+
+                <!-- Replace with AdSense Ad Unit -->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-5 p-4 border-top">
+
+        <div class="footer-links mb-3">
+
+            <a class="footerLink" href="index.html">Home</a> |
+            <a class="footerLink" href="about-us.html">About Us</a> |
+            <a class="footerLink" href="contact.html">Contact</a> |
+            <a class="footerLink" href="privacy.html">Privacy</a> |
+            <a class="footerLink" href="terms-of-service.html">Terms of Service</a> |
+            <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 CSharpHub. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
