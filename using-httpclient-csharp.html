@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Using HttpClient in C# - Complete Guide to Calling REST APIs</title>
+
+    <meta name="description"
+          content="Learn how to use HttpClient in C# to send GET, POST, PUT, and DELETE requests, consume REST APIs, handle JSON responses, configure headers, and follow .NET best practices.">
+
+    <meta name="keywords"
+          content="Using HttpClient in C#, HttpClient C# Tutorial, C# HTTP Requests, Call REST API in C#, HttpClient GET Request C#, HttpClient POST Request C#, HttpClientFactory ASP.NET Core, C# API Integration, Working with JSON in C#, Send HTTP Requests .NET, REST API Client C#, HttpClient Best Practices, ASP.NET Core HttpClient, C# Networking Tutorial, HttpClient Example C#">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="canonical" href="https://csharpdevhub.github.io/tutorial.github.io">
+
+    <!-- Google AdSense -->
+    <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html">
+                    C# Tutorials
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="privacy.html">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms-of-service.html">Terms</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="disclaimer.html">Disclaimer</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+
+            <!-- Top Ad -->
+            <div class="ad-container">
+                <!-- Replace with AdSense Ad Unit -->
+            </div>
+
+
+
+            
+            
+<article class="tutorial-article">
+
+    <header class="article-header">
+
+        <h1>Using HttpClient in C#: Complete Guide to Calling REST APIs</h1>
+
+        <p class="article-meta">
+            Published: June 2026 |
+            Category: C# Networking |
+            Reading Time: 12 Minutes
+        </p>
+
+        <p>
+            Most modern applications communicate with external services through
+            APIs. Whether you're retrieving weather information, processing payments,
+            authenticating users, or integrating third-party services,
+            <code>HttpClient</code> is the primary tool used in .NET for sending HTTP requests.
+        </p>
+
+        <p>
+            In this guide, you'll learn how to use HttpClient to perform GET,
+            POST, PUT, and DELETE requests, handle JSON responses, configure headers,
+            and follow recommended best practices.
+        </p>
+
+    </header>
+    <br />
+    <div class="note">
+
+        <strong>Topics Covered</strong>
+
+        <ul>
+            <li>What is HttpClient?</li>
+            <li>Sending GET requests</li>
+            <li>Sending POST requests</li>
+            <li>Working with JSON</li>
+            <li>Custom request headers</li>
+            <li>Error handling</li>
+            <li>HttpClientFactory</li>
+            <li>Best practices</li>
+        </ul>
+
+    </div>
+
+    <h2>What Is HttpClient?</h2>
+
+    <p>
+        HttpClient is a class provided by .NET that allows applications to send
+        HTTP requests and receive responses from web servers.
+    </p>
+
+    <p>
+        It supports common HTTP methods such as:
+    </p>
+
+    <ul>
+        <li>GET</li>
+        <li>POST</li>
+        <li>PUT</li>
+        <li>PATCH</li>
+        <li>DELETE</li>
+    </ul>
+
+    <p>
+        HttpClient is commonly used when interacting with REST APIs,
+        microservices, cloud platforms, and external web applications.
+    </p>
+
+    <h2>Creating an HttpClient</h2>
+
+    <p>
+        The simplest way to create an HttpClient instance is:
+    </p>
+
+    <pre><code>
+        using System.Net.Http;
+
+        HttpClient client = new HttpClient();
+    </code></pre>
+
+    <p>
+        Once created, the client can send requests to remote servers.
+    </p>
+
+    <h2>Making a GET Request</h2>
+
+    <p>
+        GET requests retrieve data from an API.
+    </p>
+
+    <pre><code>
+        using System.Net.Http;
+
+        HttpClient client = new HttpClient();
+
+        string response =
+        await client.GetStringAsync(
+        "https://jsonplaceholder.typicode.com/posts/1");
+
+        Console.WriteLine(response);
+    </code></pre>
+
+    <h3>Output</h3>
+
+    <pre><code>
+        {
+        "userId": 1,
+        "id": 1,
+        "title": "...",
+        "body": "..."
+        }
+    </code></pre>
+
+    <h2>Using GetAsync()</h2>
+
+    <p>
+        GetAsync() provides more control over the response.
+    </p>
+
+    <pre><code>
+        HttpResponseMessage response =
+        await client.GetAsync(
+        "https://jsonplaceholder.typicode.com/posts/1");
+
+        if (response.IsSuccessStatusCode)
+        {
+        string content =
+        await response.Content.ReadAsStringAsync();
+
+        Console.WriteLine(content);
+        }
+    </code></pre>
+
+    <p>
+        This approach allows access to status codes, headers,
+        and other response information.
+    </p>
+
+    <h2>Sending a POST Request</h2>
+
+    <p>
+        POST requests send data to a server.
+    </p>
+
+    <pre><code>
+        using System.Text;
+        using System.Net.Http;
+
+        string json =
+        """
+        {
+        "title":"New Post",
+        "body":"Example Content"
+        }
+        """;
+
+        StringContent content =
+        new StringContent(
+        json,
+        Encoding.UTF8,
+        "application/json");
+
+        HttpResponseMessage response =
+        await client.PostAsync(
+        "https://jsonplaceholder.typicode.com/posts",
+        content);
+    </code></pre>
+
+    <p>
+        This creates a new resource on the target server.
+    </p>
+
+    <h2>Reading JSON Responses</h2>
+
+    <p>
+        Most APIs return JSON data.
+    </p>
+
+    <p>
+        The System.Text.Json namespace makes deserialization straightforward.
+    </p>
+
+    <pre><code>
+        using System.Text.Json;
+
+        var post =
+        JsonSerializer.Deserialize&lt;Post&gt;(jsonResponse);
+    </code></pre>
+
+    <h3>Example Model</h3>
+
+    <pre><code>
+        public class Post
+        {
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string Body { get; set; }
+        }
+    </code></pre>
+
+    <h2>Sending Custom Headers</h2>
+
+    <p>
+        Many APIs require authentication headers.
+    </p>
+
+    <pre><code>
+        client.DefaultRequestHeaders.Add(
+        "Authorization",
+        "Bearer YOUR_TOKEN");
+    </code></pre>
+
+    <p>
+        Headers can also include API keys, custom identifiers,
+        and content negotiation settings.
+    </p>
+
+    <h2>PUT Requests</h2>
+
+    <p>
+        PUT requests update existing resources.
+    </p>
+
+    <pre><code>
+        HttpResponseMessage response =
+        await client.PutAsync(
+        url,
+        content);
+    </code></pre>
+
+    <h2>DELETE Requests</h2>
+
+    <p>
+        DELETE requests remove resources from a server.
+    </p>
+
+    <pre><code>
+        HttpResponseMessage response =
+        await client.DeleteAsync(
+        "https://api.example.com/posts/1");
+    </code></pre>
+
+    <h2>Error Handling</h2>
+
+    <p>
+        Network failures and server errors should always be handled properly.
+    </p>
+
+    <pre><code>
+        try
+        {
+        HttpResponseMessage response =
+        await client.GetAsync(url);
+
+        response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException ex)
+        {
+        Console.WriteLine(ex.Message);
+        }
+    </code></pre>
+
+    <p>
+        This helps applications recover gracefully when requests fail.
+    </p>
+
+    <h2>Using HttpClientFactory in ASP.NET Core</h2>
+
+    <p>
+        In ASP.NET Core applications, Microsoft recommends using
+        HttpClientFactory.
+    </p>
+
+    <p>
+        It manages HttpClient lifetimes and prevents common issues such as
+        socket exhaustion.
+    </p>
+
+    <pre><code>
+        builder.Services.AddHttpClient();
+    </code></pre>
+
+    <p>
+        Services can then receive HttpClient through dependency injection.
+    </p>
+
+    <pre><code>
+        public class WeatherService
+        {
+        private readonly HttpClient _client;
+
+        public WeatherService(HttpClient client)
+        {
+        _client = client;
+        }
+        }
+    </code></pre>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Creating a new HttpClient for every request.</li>
+        <li>Ignoring exceptions.</li>
+        <li>Not validating API responses.</li>
+        <li>Blocking async code using .Result.</li>
+        <li>Hardcoding API credentials.</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Use async and await.</li>
+        <li>Prefer HttpClientFactory in ASP.NET Core.</li>
+        <li>Reuse HttpClient instances when possible.</li>
+        <li>Handle failures gracefully.</li>
+        <li>Use strongly typed models for JSON data.</li>
+        <li>Store API keys securely.</li>
+    </ul>
+
+    <br />
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>Is HttpClient thread-safe?</h3>
+
+    <p>
+        Yes. HttpClient is designed to be reused across multiple requests.
+    </p>
+
+    <h3>Should I dispose HttpClient?</h3>
+
+    <p>
+        In ASP.NET Core applications, HttpClientFactory handles this automatically.
+        For standalone applications, reuse instances whenever possible.
+    </p>
+
+    <h3>Can HttpClient call REST APIs?</h3>
+
+    <p>
+        Yes. HttpClient is one of the most common tools used to consume REST APIs in .NET.
+    </p>
+
+    <h3>Why use async with HttpClient?</h3>
+
+    <p>
+        Async operations prevent threads from blocking while waiting for network responses.
+    </p>
+
+    <h2>Related Tutorials</h2>
+
+    <ul>
+        <li><a href="build-rest-api-in-aspnet-core.html">Build a REST API in ASP.NET Core</a></li>
+        <li><a href="reading-json-in-csharp.html">Reading JSON in C#</a></li>
+        <li><a href="async-and-await-in-csharp.html">Async and Await in C#</a></li>
+        <li><a href="task-run-explained.html">Task.Run() Explained</a></li>
+        <li><a href="dependency-injection-in-aspnet-core.html">Dependency Injection in ASP.NET Core</a></li>
+    </ul>
+
+    <h2>Conclusion</h2>
+
+    <p>
+        HttpClient is an essential class for communicating with APIs and web services
+        in .NET applications. By understanding how to send requests, process JSON,
+        handle errors, and use HttpClientFactory, developers can build reliable
+        and scalable applications.
+    </p>
+
+    <p>
+        For modern ASP.NET Core projects, combining HttpClient with dependency
+        injection and asynchronous programming provides a clean and maintainable solution.
+    </p>
+
+</article>
+
+
+
+            
+            <!-- Bottom Ad -->
+            <div class="ad-container">
+
+                <!-- Replace with AdSense Ad Unit -->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-5 p-4 border-top">
+
+        <div class="footer-links mb-3">
+
+            <a class="footerLink" href="index.html">Home</a> |
+            <a class="footerLink" href="about-us.html">About Us</a> |
+            <a class="footerLink" href="contact.html">Contact</a> |
+            <a class="footerLink" href="privacy.html">Privacy</a> |
+            <a class="footerLink" href="terms-of-service.html">Terms of Service</a> |
+            <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 CSharpHub. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
