@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ASP.NET Core MVC Tutorial for Beginners</title>
+
+    <meta name="description"
+          content="Learn ASP.NET Core MVC from scratch with practical examples. Understand Models, Views, Controllers, routing, forms, data binding, and best practices for building modern web applications.">
+
+    <meta name="keywords"
+          content="ASP.NET Core MVC Tutorial, ASP.NET Core MVC Beginner Guide, Learn ASP.NET Core MVC, MVC Pattern in ASP.NET Core, ASP.NET Core Controllers Views Models, ASP.NET Core Web Development, ASP.NET Core MVC Examples, ASP.NET Core Routing Tutorial, ASP.NET Core Forms Tutorial, ASP.NET Core MVC Application, ASP.NET Core MVC Project, ASP.NET Core Development Tutorial, C# MVC Tutorial, ASP.NET Core MVC Best Practices, ASP.NET Core Beginner Tutorial">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="canonical" href="https://csharpdevhub.github.io/tutorial.github.io">
+
+    <!-- Google AdSense -->
+    <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html">
+                    C# Tutorials
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="privacy.html">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms-of-service.html">Terms</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="disclaimer.html">Disclaimer</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+
+            <!-- Top Ad -->
+            <div class="ad-container">
+                <!-- Replace with AdSense Ad Unit -->
+            </div>
+
+
+
+<article class="tutorial-article">
+
+    <header class="article-header">
+
+        <h1>ASP.NET Core MVC Tutorial for Beginners</h1>    
+
+        <p class="article-meta">
+            Published: June 2026 |
+            Category: ASP.NET Core |
+            Reading Time: 18 Minutes
+        </p>
+
+        <p>
+            ASP.NET Core MVC is one of the most popular frameworks for building
+            modern web applications using C# and .NET. It provides a structured
+            approach to web development through the Model-View-Controller (MVC)
+            architectural pattern.
+        </p>
+
+        <p>
+            Whether you're building a company website, an administration panel,
+            an e-commerce platform, or a business application, ASP.NET Core MVC
+            offers powerful tools for creating maintainable and scalable solutions.
+        </p>
+
+        <p>
+            In this tutorial, you'll learn the fundamentals of ASP.NET Core MVC,
+            understand how Models, Views, and Controllers work together, and build
+            your first MVC application step by step.
+        </p>
+
+    </header>
+    <br />
+    <div class="note">
+
+        <strong>Topics Covered</strong>
+
+        <ul>
+            <li>What is ASP.NET Core MVC?</li>
+            <li>Understanding the MVC Pattern</li>
+            <li>Creating a New MVC Project</li>
+            <li>Controllers</li>
+            <li>Views</li>
+            <li>Models</li>
+            <li>Routing</li>
+            <li>Passing Data to Views</li>
+            <li>Working with Forms</li>
+            <li>Best Practices</li>
+        </ul>
+
+    </div>
+
+    <h2>What Is ASP.NET Core MVC?</h2>
+
+    <p>
+        ASP.NET Core MVC is a web application framework built on .NET that
+        implements the Model-View-Controller architectural pattern.
+    </p>
+
+    <p>
+        MVC separates application logic into distinct components, making code
+        easier to organize, test, and maintain.
+    </p>
+
+    <p>
+        The framework includes:
+    </p>
+
+    <ul>
+        <li>Built-in routing</li>
+        <li>Dependency Injection</li>
+        <li>Model Binding</li>
+        <li>Validation</li>
+        <li>Authentication and Authorization</li>
+        <li>Razor View Engine</li>
+    </ul>
+
+    <h2>Understanding the MVC Pattern</h2>
+
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Model</td>
+                <td>Represents application data and business logic.</td>
+            </tr>
+
+            <tr>
+                <td>View</td>
+                <td>Displays information to users.</td>
+            </tr>
+
+            <tr>
+                <td>Controller</td>
+                <td>Handles requests and coordinates models and views.</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <h2>How MVC Works</h2>
+
+    <ol>
+        <li>A user sends a request.</li>
+        <li>The controller receives the request.</li>
+        <li>The controller interacts with models.</li>
+        <li>Data is passed to a view.</li>
+        <li>The view renders HTML.</li>
+        <li>The browser displays the result.</li>
+    </ol>
+
+    <h2>Create a New MVC Project</h2>
+
+    <p>
+        Use the .NET CLI to create a new MVC application.
+    </p>
+
+    <pre><code>
+        dotnet new mvc -n MyMvcApp
+    </code></pre>
+
+    <pre><code>
+        cd MyMvcApp
+    </code></pre>
+
+    <pre><code>
+        dotnet run
+    </code></pre>
+
+    <p>
+        Open your browser and navigate to:
+    </p>
+
+    <pre><code>
+        https://localhost:5001
+    </code></pre>
+
+    <h2>Project Structure</h2>
+
+    <pre><code>
+        Controllers/
+        Models/
+        Views/
+        wwwroot/
+        Program.cs
+        appsettings.json
+    </code></pre>
+
+    <p>
+        Each folder has a specific purpose within the MVC architecture.
+    </p>
+
+    <h2>Controllers</h2>
+
+    <p>
+        Controllers process incoming requests and return responses.
+    </p>
+
+    <pre><code>
+        using Microsoft.AspNetCore.Mvc;
+
+        public class HomeController : Controller
+        {
+        public IActionResult Index()
+        {
+        return View();
+        }
+        }
+    </code></pre>
+
+    <p>
+        The Index action returns a view to the browser.
+    </p>
+
+    <h2>Views</h2>
+
+    <p>
+        Views generate the HTML sent to users.
+    </p>
+
+    <p>
+        Create:
+    </p>
+
+    <pre><code>
+        Views/Home/Index.cshtml
+    </code></pre>
+
+    <pre><code>
+        &lt;h1&gt;Welcome to ASP.NET Core MVC&lt;/h1&gt;
+
+        &lt;p&gt;My first MVC application.&lt;/p&gt;
+    </code></pre>
+
+    <h2>Models</h2>
+
+    <p>
+        Models represent data used by the application.
+    </p>
+
+    <pre><code>
+        public class Product
+        {
+        public int Id { get; set; }
+
+        public string Name { get; set; } = "";
+
+        public decimal Price { get; set; }
+        }
+    </code></pre>
+
+    <p>
+        Models are commonly used with databases and forms.
+    </p>
+
+    <h2>Passing Data from Controller to View</h2>
+
+    <pre><code>
+        public IActionResult Index()
+        {
+        ViewBag.Message =
+        "Welcome to CSharpHub";
+
+        return View();
+        }
+    </code></pre>
+
+    <p>
+        Display the data inside the view:
+    </p>
+
+    <pre><code>
+        &lt;h2&gt;@ViewBag.Message&lt;/h2&gt;
+    </code></pre>
+
+    <h2>Using Strongly Typed Models</h2>
+
+    <p>
+        Strongly typed views provide better maintainability and IntelliSense support.
+    </p>
+
+    <pre><code>
+        public IActionResult Details()
+        {
+        Product product = new Product
+        {
+        Id = 1,
+        Name = "Laptop",
+        Price = 999.99M
+        };
+
+        return View(product);
+        }
+    </code></pre>
+
+    <p>
+        View:
+    </p>
+
+    <pre><code>
+        &lt;h2&gt;@Model Product&lt;/h2&gt;
+
+        &lt;h2&gt;@Model.Name&lt;/h2&gt;
+
+        &lt;p&gt;$@Model.Price&lt;/p&gt;
+    </code></pre>
+
+    <h2>Routing in ASP.NET Core MVC</h2>
+
+    <p>
+        Routing determines which controller and action handle requests.
+    </p>
+
+    <pre><code>
+        app.MapControllerRoute(
+        name: "default",
+        pattern:
+        "{controller=Home}/{action=Index}/{id?}");
+    </code></pre>
+
+    <p>
+        Example URLs:
+    </p>
+
+    <pre><code>
+        /Home/Index
+
+        /Home/About
+
+        /Product/Details/1
+    </code></pre>
+
+    <h2>Creating a Form</h2>
+
+    <p>
+        Forms allow users to submit data to the server.
+    </p>
+
+    <pre><code>
+        &lt;form method="post"&gt;
+
+        &lt;input
+        type="text"
+        name="Name" /&gt;
+
+        &lt;button type="submit"&gt;
+        Save
+        &lt;/button&gt;
+
+        &lt;/form&gt;
+    </code></pre>
+
+    <h2>Handling Form Submission</h2>
+
+    <pre><code>
+        [HttpPost]
+        public IActionResult Save(
+        string name)
+        {
+        ViewBag.Name = name;
+
+        return View();
+        }
+    </code></pre>
+
+    <p>
+        ASP.NET Core automatically binds form values to parameters.
+    </p>
+
+    <h2>Model Binding</h2>
+
+    <p>
+        Model Binding maps incoming request data to C# objects.
+    </p>
+
+    <pre><code>
+        [HttpPost]
+        public IActionResult Create(
+        Product product)
+        {
+        return View(product);
+        }
+    </code></pre>
+
+    <p>
+        This eliminates the need to manually extract form values.
+    </p>
+
+    <h2>Model Validation</h2>
+
+    <p>
+        Validation ensures user input meets requirements.
+    </p>
+
+    <pre><code>
+        using System.ComponentModel.DataAnnotations;
+
+        public class Product
+        {
+        [Required]
+        public string Name { get; set; } = "";
+
+        [Range(1, 100000)]
+        public decimal Price { get; set; }
+        }
+    </code></pre>
+
+    <p>
+        Check validation:
+    </p>
+
+    <pre><code>
+        if (ModelState.IsValid)
+        {
+        // Save data
+        }
+    </code></pre>
+
+    <h2>Using Layout Pages</h2>
+
+    <p>
+        Layout pages provide a consistent design across the website.
+    </p>
+
+    <pre><code>
+        Views/Shared/_Layout.cshtml
+    </code></pre>
+
+    <p>
+        Common elements include:
+    </p>
+
+    <ul>
+        <li>Navigation menu</li>
+        <li>Header</li>
+        <li>Footer</li>
+        <li>Sidebar</li>
+    </ul>
+
+    <h2>Dependency Injection in MVC</h2>
+
+    <p>
+        ASP.NET Core includes built-in Dependency Injection support.
+    </p>
+
+    <pre><code>
+        builder.Services.AddScoped&lt;
+        IProductService,
+        ProductService&gt;();
+    </code></pre>
+
+    <pre><code>
+        public class ProductController
+        {
+        private readonly IProductService
+        _productService;
+
+        public ProductController(
+        IProductService productService)
+        {
+        _productService =
+        productService;
+        }
+        }
+    </code></pre>
+
+    <h2>Benefits of ASP.NET Core MVC</h2>
+
+    <ul>
+        <li>Clear separation of concerns.</li>
+        <li>Improved maintainability.</li>
+        <li>Built-in security features.</li>
+        <li>Excellent performance.</li>
+        <li>Cross-platform support.</li>
+        <li>Easy testing and debugging.</li>
+    </ul>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Putting business logic inside views.</li>
+        <li>Creating large controllers.</li>
+        <li>Ignoring validation.</li>
+        <li>Duplicating code.</li>
+        <li>Not using Dependency Injection.</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Keep controllers small.</li>
+        <li>Use strongly typed models.</li>
+        <li>Validate user input.</li>
+        <li>Use Dependency Injection.</li>
+        <li>Organize projects logically.</li>
+        <li>Follow the Single Responsibility Principle.</li>
+    </ul>
+    <br />
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>Is ASP.NET Core MVC still relevant?</h3>
+
+    <p>
+        Yes. ASP.NET Core MVC remains widely used for enterprise applications,
+        business systems, content management systems, and custom web platforms.
+    </p>
+
+    <h3>What is the difference between MVC and Razor Pages?</h3>
+
+    <p>
+        MVC separates functionality into controllers and views, while Razor Pages
+        uses a page-focused development model.
+    </p>
+
+    <h3>Can MVC work with databases?</h3>
+
+    <p>
+        Yes. MVC applications commonly use Entity Framework Core for database access.
+    </p>
+
+    <h3>Is ASP.NET Core MVC good for beginners?</h3>
+
+    <p>
+        Yes. Learning MVC helps developers understand web architecture,
+        routing, forms, validation, and application structure.
+    </p>
+
+    <h2>Related Tutorials</h2>
+
+    <ul>
+       <li><a href="dependency-injection-in-aspnet-core.html">Dependency Injection in ASP.NET Core</a></li>
+        <li><a href="build-rest-api-in-aspnet-core.html">Build a REST API in ASP.NET Core</a></li>
+        <li><a href="jwt-authentication-in-aspnet-core.html">JWT Authentication in ASP.NET Core</a></li>
+        <li><a href="entity-framework-core-crud.html">Entity Framework Core CRUD</a></li>
+        <li><a href="aspnet-core-middleware.html">ASP.NET Core Middleware</a></li>
+        <li><a href="repository-pattern-in-aspnet-core.html">Repository Pattern in ASP.NET Core</a></li>
+    </ul>
+
+    <h2>Conclusion</h2>
+
+    <p>
+        ASP.NET Core MVC provides a structured and powerful way to build
+        modern web applications using C# and .NET.
+    </p>
+
+    <p>
+        By understanding Models, Views, Controllers, routing, forms,
+        validation, and Dependency Injection, you'll have a solid foundation
+        for building professional web applications.
+    </p>
+
+    <p>
+        As you continue learning, consider exploring Entity Framework Core,
+        authentication, Web APIs, and advanced architectural patterns to
+        expand your ASP.NET Core development skills.
+    </p>
+
+</article>
+
+
+
+            
+            <!-- Bottom Ad -->
+            <div class="ad-container">
+
+                <!-- Replace with AdSense Ad Unit -->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-5 p-4 border-top">
+
+        <div class="footer-links mb-3">
+
+            <a class="footerLink" href="index.html">Home</a> |
+            <a class="footerLink" href="about-us.html">About Us</a> |
+            <a class="footerLink" href="contact.html">Contact</a> |
+            <a class="footerLink" href="privacy.html">Privacy</a> |
+            <a class="footerLink" href="terms-of-service.html">Terms of Service</a> |
+            <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 CSharpHub. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
