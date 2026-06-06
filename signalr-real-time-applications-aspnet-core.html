@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SignalR Real-Time Applications in ASP.NET Core</title>
+
+    <meta name="description"
+          content="Learn how to build real-time applications using SignalR in ASP.NET Core. Create live chat systems, notifications, dashboards, and collaborative applications with practical examples.">
+
+    <meta name="keywords"
+          content="SignalR ASP.NET Core, SignalR Tutorial, Real Time Applications ASP.NET Core, ASP.NET Core SignalR Chat Application, SignalR Notifications, SignalR Hub Tutorial, SignalR JavaScript Client, ASP.NET Core Real Time Communication, SignalR Examples, WebSockets ASP.NET Core, Live Chat ASP.NET Core, SignalR Best Practices">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="canonical" href="https://csharpdevhub.github.io/tutorial.github.io">
+
+    <!-- Google AdSense -->
+    <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html">
+                    C# Tutorials
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="privacy.html">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms-of-service.html">Terms</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="disclaimer.html">Disclaimer</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+
+            <!-- Top Ad -->
+            <div class="ad-container">
+                <!-- Replace with AdSense Ad Unit -->
+            </div>
+
+
+
+            
+           
+<article class="tutorial-article">
+
+    <header class="article-header">
+
+        <h1>SignalR Real-Time Applications in ASP.NET Core: Complete Beginner's Guide</h1>
+
+        <p class="article-meta">
+            Published: June 2026 |
+            Category: ASP.NET Core |
+            Reading Time: 16 Minutes
+        </p>
+
+        <p>
+            Modern applications increasingly rely on real-time communication.
+            Users expect instant updates without refreshing the page,
+            whether they are chatting with other users, receiving notifications,
+            monitoring dashboards, or collaborating on shared documents.
+        </p>
+
+        <p>
+            ASP.NET Core SignalR provides a simple and powerful framework
+            for adding real-time functionality to web applications.
+            Instead of continuously polling the server for updates,
+            SignalR enables the server to push information directly
+            to connected clients.
+        </p>
+
+        <p>
+            In this tutorial, you'll learn how SignalR works,
+            how to create a SignalR Hub, connect clients,
+            send messages, and build real-time applications
+            using ASP.NET Core.
+        </p>
+
+    </header>
+    <br />
+    <div class="note">
+
+        <strong>Topics Covered</strong>
+
+        <ul>
+            <li>What is SignalR?</li>
+            <li>Real-Time Communication</li>
+            <li>Creating a SignalR Project</li>
+            <li>SignalR Hubs</li>
+            <li>Sending Messages</li>
+            <li>JavaScript Client</li>
+            <li>Chat Application Example</li>
+            <li>Notifications</li>
+            <li>Groups and Connections</li>
+            <li>Best Practices</li>
+        </ul>
+
+    </div>
+
+    <h2>What Is SignalR?</h2>
+
+    <p>
+        SignalR is a library for ASP.NET Core that enables
+        real-time communication between servers and clients.
+    </p>
+
+    <p>
+        It automatically selects the best available transport
+        technology, including:
+    </p>
+
+    <ul>
+        <li>WebSockets</li>
+        <li>Server-Sent Events (SSE)</li>
+        <li>Long Polling</li>
+    </ul>
+
+    <p>
+        This allows developers to focus on application logic
+        rather than managing communication protocols.
+    </p>
+
+    <h2>Common SignalR Use Cases</h2>
+
+    <ul>
+        <li>Live chat systems</li>
+        <li>Real-time notifications</li>
+        <li>Stock market dashboards</li>
+        <li>Online gaming</li>
+        <li>Live sports updates</li>
+        <li>Collaborative editing tools</li>
+        <li>Monitoring dashboards</li>
+    </ul>
+
+    <h2>Create a New ASP.NET Core Project</h2>
+
+    <pre><code>
+        dotnet new mvc -n SignalRDemo
+
+        cd SignalRDemo
+    </code></pre>
+
+    <h2>Install SignalR</h2>
+
+    <p>
+        SignalR is included in modern ASP.NET Core applications,
+        but you can add the package if necessary.
+    </p>
+
+    <pre><code>
+        dotnet add package Microsoft.AspNetCore.SignalR
+    </code></pre>
+
+    <h2>Create a SignalR Hub</h2>
+
+    <p>
+        A Hub is the central component that manages communication
+        between clients and the server.
+    </p>
+
+    <pre><code>
+        using Microsoft.AspNetCore.SignalR;
+
+        public class ChatHub : Hub
+        {
+        }
+    </code></pre>
+
+    <h2>Sending Messages to Connected Clients</h2>
+
+    <pre><code>
+        using Microsoft.AspNetCore.SignalR;
+
+        public class ChatHub : Hub
+        {
+        public async Task SendMessage(
+        string user,
+        string message)
+        {
+        await Clients.All.SendAsync(
+        "ReceiveMessage",
+        user,
+        message);
+        }
+        }
+    </code></pre>
+
+    <p>
+        The method above broadcasts messages to all connected users.
+    </p>
+
+    <h2>Register SignalR</h2>
+
+    <p>
+        Configure SignalR in Program.cs.
+    </p>
+
+    <pre><code>
+        builder.Services.AddSignalR();
+    </code></pre>
+
+    <h2>Map the Hub Endpoint</h2>
+
+    <pre><code>
+        app.MapHub&lt;ChatHub&gt;("/chatHub");
+    </code></pre>
+
+    <p>
+        Clients will connect using the /chatHub endpoint.
+    </p>
+
+    <h2>Add the SignalR JavaScript Client</h2>
+
+    <pre><code>
+        &lt;script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"&gt;
+        &lt;/script&gt;
+    </code></pre>
+
+    <h2>Create a Client Connection</h2>
+
+    <pre><code>
+        const connection =
+        new signalR.HubConnectionBuilder()
+        .withUrl("/chatHub")
+        .build();
+
+        await connection.start();
+    </code></pre>
+
+    <h2>Receive Messages</h2>
+
+    <pre><code>
+        connection.on(
+        "ReceiveMessage",
+        function(user, message)
+        {
+        console.log(user + ": " + message);
+        });
+    </code></pre>
+
+    <p>
+        Whenever the server sends a message,
+        the client receives it instantly.
+    </p>
+
+    <h2>Send Messages from the Browser</h2>
+
+    <pre><code>
+        await connection.invoke(
+        "SendMessage",
+        "John",
+        "Hello SignalR!");
+    </code></pre>
+
+    <h2>Building a Simple Chat Application</h2>
+
+    <p>
+        A basic SignalR chat application typically includes:
+    </p>
+
+    <ul>
+        <li>SignalR Hub</li>
+        <li>Message input form</li>
+        <li>Message display area</li>
+        <li>Connected user list</li>
+    </ul>
+
+    <p>
+        Messages are delivered instantly to all connected users
+        without refreshing the page.
+    </p>
+
+    <h2>Real-Time Notifications</h2>
+
+    <p>
+        SignalR is commonly used for notifications.
+    </p>
+
+    <pre><code>
+        await Clients.All.SendAsync(
+        "NewNotification",
+        "Order Created Successfully");
+    </code></pre>
+
+    <p>
+        This can be used for:
+    </p>
+
+    <ul>
+        <li>Order updates</li>
+        <li>System alerts</li>
+        <li>User activity notifications</li>
+        <li>Background job completion messages</li>
+    </ul>
+
+    <h2>Working with Groups</h2>
+
+    <p>
+        Groups allow messages to be sent to specific users.
+    </p>
+
+    <pre><code>
+        await Groups.AddToGroupAsync(
+        Context.ConnectionId,
+        "Admins");
+    </code></pre>
+
+    <pre><code>
+        await Clients.Group("Admins")
+        .SendAsync(
+        "ReceiveMessage",
+        "Admin Notification");
+    </code></pre>
+
+    <h2>Connection IDs</h2>
+
+    <p>
+        Every connected client receives a unique Connection ID.
+    </p>
+
+    <pre><code>
+        string connectionId =
+        Context.ConnectionId;
+    </code></pre>
+
+    <p>
+        Connection IDs make it possible to send messages
+        to individual users.
+    </p>
+
+    <h2>SignalR and Dependency Injection</h2>
+
+    <p>
+        SignalR integrates seamlessly with ASP.NET Core's
+        Dependency Injection system.
+    </p>
+
+    <pre><code>
+        public class ChatHub : Hub
+        {
+        private readonly ILogger&lt;ChatHub&gt; _logger;
+
+        public ChatHub(
+        ILogger&lt;ChatHub&gt; logger)
+        {
+        _logger = logger;
+        }
+        }
+    </code></pre>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Not handling connection failures.</li>
+        <li>Broadcasting unnecessary data.</li>
+        <li>Ignoring authentication and authorization.</li>
+        <li>Creating large Hub methods.</li>
+        <li>Not validating incoming messages.</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Keep Hub methods lightweight.</li>
+        <li>Validate user input.</li>
+        <li>Use groups when appropriate.</li>
+        <li>Implement authentication.</li>
+        <li>Handle reconnection scenarios.</li>
+        <li>Log connection events.</li>
+        <li>Monitor application performance.</li>
+    </ul>
+    <br />
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>Is SignalR free?</h3>
+
+    <p>
+        Yes. SignalR is an open-source framework maintained
+        as part of ASP.NET Core.
+    </p>
+
+    <h3>Does SignalR use WebSockets?</h3>
+
+    <p>
+        Yes. SignalR automatically uses WebSockets when available
+        and falls back to other transport methods when necessary.
+    </p>
+
+    <h3>Can SignalR be used with ASP.NET Core MVC?</h3>
+
+    <p>
+        Absolutely. SignalR works with MVC, Razor Pages,
+        Blazor, and Web API projects.
+    </p>
+
+    <h3>Is SignalR suitable for large-scale applications?</h3>
+
+    <p>
+        Yes. SignalR supports scaling through technologies
+        such as Azure SignalR Service and distributed backplanes.
+    </p>
+
+    <h2>Related Tutorials</h2>
+
+    <ul>
+        <li><a href="build-rest-api-in-aspnet-core.html">Build a REST API in ASP.NET Core</a></li>
+        <li><a href="dependency-injection-in-aspnet-core.html">Dependency Injection in ASP.NET Core</a></li>
+        <li><a href="background-services-in-dotnet.html">Background Services in .NET</a></li>
+        <li><a href="using-httpclient-in-csharp.html">Using HttpClient in C#</a></li>
+        <li><a href="jwt-authentication-in-aspnet-core.html">JWT Authentication in ASP.NET Core</a></li>
+        <li><a href="aspnet-core-middleware.html">ASP.NET Core Middleware</a></li>
+    </ul>
+
+    <h2>Conclusion</h2>
+
+    <p>
+        SignalR makes it easy to add real-time functionality
+        to ASP.NET Core applications. Whether you're building
+        chat systems, notifications, dashboards, or collaborative
+        tools, SignalR provides a reliable framework for instant
+        communication between clients and servers.
+    </p>
+
+    <p>
+        By understanding Hubs, client connections, groups,
+        notifications, and best practices, you'll be ready
+        to build responsive real-time applications using ASP.NET Core.
+    </p>
+
+</article>
+
+
+
+            
+            <!-- Bottom Ad -->
+            <div class="ad-container">
+
+                <!-- Replace with AdSense Ad Unit -->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-5 p-4 border-top">
+
+        <div class="footer-links mb-3">
+
+            <a class="footerLink" href="index.html">Home</a> |
+            <a class="footerLink" href="about-us.html">About Us</a> |
+            <a class="footerLink" href="contact.html">Contact</a> |
+            <a class="footerLink" href="privacy.html">Privacy</a> |
+            <a class="footerLink" href="terms-of-service.html">Terms of Service</a> |
+            <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 CSharpHub. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
