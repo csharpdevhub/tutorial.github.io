@@ -397,9 +397,9 @@
                                         <h2>Related Tutorials</h2>
 
                                         <ul>
-                                            <li><a asp-controller="Tutorials" asp-action="WhatIsAThreadInC">What Is a Thread in C#?</a></li>
-                                            <li><a asp-controller="Tutorials" asp-action="UnderstandingTasksInNET">Understanding Tasks in .NET</a></li>
-                                            <li><a asp-controller="Tutorials" asp-action="ExceptionHandling">Exception Handling in C#</a></li>
+                                            <li><a href="what-is-a-thread-in-csharp.html">What Is a Thread in C#?</a></li>
+                                            <li><a href="understanding-tasks-in-dotnet.html">Understanding Tasks in .NET</a></li>
+                                            <li><a href="exception-handling-in-csharp.html">Exception Handling in C#</a></li>
                                         </ul>
                                     </section>
 
