@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Top C# Interview Questions and Answers for Developers</title>
+
+    <meta name="description"
+          content="Prepare for your next developer interview with common C# interview questions and answers covering OOP, LINQ, collections, async programming, Entity Framework Core, and ASP.NET Core.">
+
+    <meta name="keywords"
+          content="C# Interview Questions, C# Interview Questions and Answers, .NET Interview Questions, ASP.NET Core Interview Questions, Entity Framework Core Interview Questions, LINQ Interview Questions, Async Await Interview Questions, C# OOP Interview Questions, C# Collections Interview Questions, C# Multithreading Interview Questions, C# Coding Interview Questions, C# Developer Interview Guide, Junior C# Developer Interview Questions, Senior C# Developer Interview Questions, .NET Developer Interview Preparation">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="canonical" href="https://csharpdevhub.github.io/tutorial.github.io">
+
+    <!-- Google AdSense -->
+    <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html">
+                    C# Tutorials
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="privacy.html">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms-of-service.html">Terms</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="disclaimer.html">Disclaimer</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+
+            <!-- Top Ad -->
+            <div class="ad-container">
+                <!-- Replace with AdSense Ad Unit -->
+            </div>
+
+
+
+            
+            
+<article class="tutorial-article">
+
+    <header class="article-header">
+
+        <h1>Top C# Interview Questions and Answers</h1>
+
+        <p class="article-meta">
+            Published: June 2026 |
+            Category: Career & C# Development |
+            Reading Time: 18 Minutes
+        </p>
+
+        <p>
+            Technical interviews can be challenging, especially when applying
+            for .NET development roles. Employers often evaluate both
+            theoretical knowledge and practical coding skills.
+        </p>
+
+        <p>
+            This guide covers commonly asked C# interview questions,
+            explanations, and sample answers that can help you prepare
+            for junior, mid-level, and senior developer positions.
+        </p>
+
+    </header>
+    <br />
+    <div class="note">
+
+        <strong>Topics Covered</strong>
+
+        <ul>
+            <li>C# Fundamentals</li>
+            <li>Object-Oriented Programming</li>
+            <li>Collections</li>
+            <li>LINQ</li>
+            <li>Exception Handling</li>
+            <li>Delegates and Events</li>
+            <li>Async and Await</li>
+            <li>Tasks and Multithreading</li>
+            <li>Entity Framework Core</li>
+            <li>ASP.NET Core</li>
+            <li>Common Interview Tips</li>
+        </ul>
+
+    </div>
+
+    <h2>1. What Is C#?</h2>
+
+    <p>
+        C# is a modern object-oriented programming language developed by Microsoft.
+        It is widely used for web applications, desktop software, cloud services,
+        APIs, mobile applications, and games.
+    </p>
+
+    <h2>2. What Is the Difference Between Value Types and Reference Types?</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Value Type</th>
+                <th>Reference Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Stores actual data</td>
+                <td>Stores reference to data</td>
+            </tr>
+            <tr>
+                <td>Allocated on stack</td>
+                <td>Allocated on heap</td>
+            </tr>
+            <tr>
+                <td>Examples: int, bool</td>
+                <td>Examples: string, class</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. What Are the Four Pillars of OOP?</h2>
+
+    <ul>
+        <li>Encapsulation</li>
+        <li>Inheritance</li>
+        <li>Polymorphism</li>
+        <li>Abstraction</li>
+    </ul>
+
+    <h2>4. What Is the Difference Between Abstract Classes and Interfaces?</h2>
+
+    <p>
+        Abstract classes can contain both implemented and abstract members,
+        while interfaces define contracts that classes must implement.
+    </p>
+
+    <h2>5. What Is LINQ?</h2>
+
+    <p>
+        LINQ (Language Integrated Query) allows developers to query collections,
+        databases, XML documents, and other data sources using a consistent syntax.
+    </p>
+
+<pre><code>
+var adults = people
+    .Where(p => p.Age >= 18)
+    .ToList();
+</code></pre>
+
+    <h2>6. What Is the Difference Between First() and FirstOrDefault()?</h2>
+
+    <ul>
+        <li>First() throws an exception if no item exists.</li>
+        <li>FirstOrDefault() returns the default value instead.</li>
+    </ul>
+
+    <h2>7. What Is Exception Handling?</h2>
+
+    <p>
+        Exception handling allows applications to gracefully recover from runtime
+        errors using try, catch, and finally blocks.
+    </p>
+
+<pre><code>
+try
+{
+    // Code
+}
+catch(Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+</code></pre>
+
+    <h2>8. What Is a Delegate?</h2>
+
+    <p>
+        A delegate is a type-safe reference to a method.
+        It enables callback methods and event-driven programming.
+    </p>
+
+    <h2>9. What Are Events?</h2>
+
+    <p>
+        Events provide a mechanism for communication between objects and are
+        commonly used in UI applications and notifications.
+    </p>
+
+    <h2>10. What Is async and await?</h2>
+
+    <p>
+        Async programming allows long-running operations to execute without
+        blocking the current thread.
+    </p>
+
+<pre><code>
+public async Task GetDataAsync()
+{
+    await Task.Delay(1000);
+}
+</code></pre>
+
+    <h2>11. What Is the Difference Between Thread and Task?</h2>
+
+    <p>
+        A Thread represents an actual operating system thread, while Task is
+        a higher-level abstraction built on top of the thread pool.
+    </p>
+
+    <h2>12. What Is Dependency Injection?</h2>
+
+    <p>
+        Dependency Injection improves maintainability and testability by
+        supplying dependencies from outside a class.
+    </p>
+
+    <h2>13. What Is Entity Framework Core?</h2>
+
+    <p>
+        Entity Framework Core is Microsoft's ORM for .NET applications,
+        allowing developers to interact with databases using C# objects.
+    </p>
+
+    <h2>14. What Is a REST API?</h2>
+
+    <p>
+        A REST API exposes resources through HTTP endpoints using methods
+        such as GET, POST, PUT, and DELETE.
+    </p>
+
+    <h2>15. What Is Middleware in ASP.NET Core?</h2>
+
+    <p>
+        Middleware components process HTTP requests and responses in the
+        ASP.NET Core pipeline.
+    </p>
+
+    <h2>Common Interview Tips</h2>
+
+    <ul>
+        <li>Understand concepts instead of memorizing answers.</li>
+        <li>Practice writing code by hand.</li>
+        <li>Build small projects to gain experience.</li>
+        <li>Learn ASP.NET Core fundamentals.</li>
+        <li>Understand Entity Framework Core basics.</li>
+        <li>Review LINQ and asynchronous programming.</li>
+    </ul>
+
+    <h2>Related Tutorials</h2>
+
+    <ul>      
+        <li><a href="best-csharp-coding-practices.html">Best C# Coding Practices</a></li>       
+        <li><a href="linq-cheat-sheet.html">LINQ Cheat Sheet</a></li>
+        <li><a href="async-and-await-in-csharp.html">Understanding Asynchronous Programming in .NET</a></li>
+         <li><a href="thread-vs-task-csharp">Thread vs Task in C#</a></li>
+        <li><a href="dependency-injection-in-aspnet-core.html">Dependency Injection in ASP.NET Core</a></li>
+        <li><a href="entity-framework-core-crud.html">Entity Framework Core CRUD</a></li>
+    </ul>
+
+    <h2>Conclusion</h2>
+
+    <p>
+        C# interviews often focus on programming fundamentals, object-oriented
+        principles, collections, LINQ, asynchronous programming, and ASP.NET Core.
+        Building a solid understanding of these topics will significantly improve
+        your confidence and performance during technical interviews.
+    </p>
+
+</article>
+
+
+
+            
+            <!-- Bottom Ad -->
+            <div class="ad-container">
+
+                <!-- Replace with AdSense Ad Unit -->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-5 p-4 border-top">
+
+        <div class="footer-links mb-3">
+
+            <a class="footerLink" href="index.html">Home</a> |
+            <a class="footerLink" href="about-us.html">About Us</a> |
+            <a class="footerLink" href="contact.html">Contact</a> |
+            <a class="footerLink" href="privacy.html">Privacy</a> |
+            <a class="footerLink" href="terms-of-service.html">Terms of Service</a> |
+            <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 CSharpHub. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
