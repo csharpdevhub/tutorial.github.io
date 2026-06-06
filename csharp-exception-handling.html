@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exception Handling in C# - Try, Catch, Finally, Throw, and Best Practices</title>
+
+    <meta name="description"
+          content="Learn exception handling in C# using try, catch, finally, and throw statements. Understand common exceptions, custom exceptions, error handling techniques, and best practices.">
+
+    <meta name="keywords"
+          content="Exception Handling in C#, C# Exception Handling Tutorial, Try Catch in C#, C# Finally Block, Throw Exception C#, Custom Exceptions in C#, C# Error Handling, C# Runtime Exceptions, Exception Handling Best Practices, C# Programming Tutorial">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="canonical" href="https://csharpdevhub.github.io/tutorial.github.io">
+
+    <!-- Google AdSense -->
+    <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html">
+                    C# Tutorials
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="privacy.html">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms-of-service.html">Terms</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="disclaimer.html">Disclaimer</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+
+            <!-- Top Ad -->
+            <div class="ad-container">
+                <!-- Replace with AdSense Ad Unit -->
+            </div>
+
+
+
+            
+           <article class="tutorial-article">
+
+    <header>
+        <h1>
+            Exception Handling in C#:
+            Try, Catch, Finally, Throw, and Best Practices
+        </h1>
+
+        <p>
+            Errors are a normal part of software development. Applications interact
+            with files, databases, web services, user input, and external systems,
+            all of which can fail unexpectedly.
+        </p>
+
+        <p>
+            Exception handling allows developers to detect, manage, and respond to
+            runtime errors without causing an application to crash unexpectedly.
+        </p>
+
+        <p>
+            In this guide, you'll learn the fundamentals of exception handling in C#,
+            including try-catch blocks, finally statements, custom exceptions, and
+            best practices for writing reliable applications.
+        </p>
+    </header>
+    <br />
+    <section>
+        <h2>What Is an Exception?</h2>
+
+        <p>
+            An exception is an error that occurs while a program is running.
+            When an exception is not handled properly, the application may terminate
+            unexpectedly.
+        </p>
+
+        <pre><code>int number = 10;
+            int result = number / 0;</code></pre>
+
+            <p>
+                This code throws a <code>DivideByZeroException</code> because division
+                by zero is not allowed.
+            </p>
+        </section>
+
+        <section>
+            <h2>Why Exception Handling Matters</h2>
+
+            <p>
+                Proper exception handling helps applications:
+            </p>
+
+            <ul>
+                <li>Prevent unexpected crashes.</li>
+                <li>Provide helpful error messages.</li>
+                <li>Protect important data.</li>
+                <li>Improve user experience.</li>
+                <li>Support troubleshooting and logging.</li>
+            </ul>
+
+            <p>
+                Well-handled exceptions contribute to more reliable and maintainable
+                software.
+            </p>
+        </section>
+
+        <section>
+            <h2>Using try and catch</h2>
+
+            <p>
+                The most common way to handle exceptions is by using a try-catch block.
+            </p>
+
+            <pre><code>try
+                {
+                int number = 10;
+                int result = number / 0;
+
+                Console.WriteLine(result);
+                }
+                catch
+                {
+                Console.WriteLine("An error occurred.");
+                }</code></pre>
+
+                <h3>Output</h3>
+
+                <pre><code>An error occurred.</code></pre>
+
+                <p>
+                    If an exception occurs inside the try block, execution moves to the
+                    catch block.
+                </p>
+            </section>
+
+            <section>
+                <h2>Handling Specific Exceptions</h2>
+
+                <p>
+                    It is usually better to catch specific exception types.
+                </p>
+
+                <pre><code>try
+                    {
+                    int result = 10 / 0;
+                    }
+                    catch (DivideByZeroException)
+                    {
+                    Console.WriteLine("Division by zero is not allowed.");
+                    }</code></pre>
+
+                    <p>
+                        This approach makes error handling more precise and easier to maintain.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Accessing Exception Details</h2>
+
+                    <p>
+                        The exception object contains useful information about the error.
+                    </p>
+
+                    <pre><code>try
+                        {
+                        int result = 10 / 0;
+                        }
+                        catch (Exception ex)
+                        {
+                        Console.WriteLine(ex.Message);
+                        }</code></pre>
+
+                        <p>
+                            The Message property provides a human-readable description of the problem.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Using Multiple Catch Blocks</h2>
+
+                        <p>
+                            Different exceptions can be handled in different ways.
+                        </p>
+
+                        <pre><code>try
+                            {
+                            string text = null;
+
+                            Console.WriteLine(text.Length);
+                            }
+                            catch (NullReferenceException)
+                            {
+                            Console.WriteLine("Object reference is null.");
+                            }
+                            catch (Exception)
+                            {
+                            Console.WriteLine("An unexpected error occurred.");
+                            }</code></pre>
+
+                            <p>
+                                The most specific exception types should appear before more general ones.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>Using the finally Block</h2>
+
+                            <p>
+                                The finally block always executes, whether an exception occurs or not.
+                            </p>
+
+                            <pre><code>try
+                                {
+                                Console.WriteLine("Processing...");
+                                }
+                                catch
+                                {
+                                Console.WriteLine("Error.");
+                                }
+                                finally
+                                {
+                                Console.WriteLine("Cleanup completed.");
+                                }</code></pre>
+
+                                <h3>Output</h3>
+
+                                <pre><code>Processing...
+                                    Cleanup completed.</code></pre>
+
+                                    <p>
+                                        Finally blocks are commonly used for resource cleanup.
+                                    </p>
+                                </section>
+
+                                <section>
+                                    <h2>Throwing Exceptions</h2>
+
+                                    <p>
+                                        Developers can create exceptions using the throw keyword.
+                                    </p>
+
+                                    <pre><code>int age = -1;
+
+                                        if (age < 0)
+                                              {
+                                              throw new ArgumentException(
+                                              "Age cannot be negative.");
+                                              }</code></pre>
+
+                                        <p>
+                                            Throwing exceptions allows invalid situations to be detected early.
+                                        </p>
+                                    </section>
+
+                                    <section>
+                                        <h2>Creating Custom Exceptions</h2>
+
+                                        <p>
+                                            Applications can define their own exception types.
+                                        </p>
+
+                                        <pre><code>public class InvalidCustomerException
+                                            : Exception
+                                            {
+                                            public InvalidCustomerException(string message)
+                                            : base(message)
+                                            {
+                                            }
+                                            }</code></pre>
+
+                                            <p>
+                                                Custom exceptions can make error handling more meaningful within
+                                                business applications.
+                                            </p>
+                                        </section>
+
+                                        <section>
+                                            <h2>Common Exceptions in C#</h2>
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Exception</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>DivideByZeroException</td>
+                                                        <td>Division by zero attempted.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>NullReferenceException</td>
+                                                        <td>Object reference is null.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>IndexOutOfRangeException</td>
+                                                        <td>Invalid array index.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>FormatException</td>
+                                                        <td>Invalid format conversion.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>ArgumentException</td>
+                                                        <td>Invalid method argument.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>FileNotFoundException</td>
+                                                        <td>File could not be located.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+
+                                        <section>
+                                            <h2>Exception Handling with Async Methods</h2>
+
+                                            <p>
+                                                Asynchronous methods use the same exception handling principles.
+                                            </p>
+
+                                            <pre><code>try
+                                                {
+                                                await Task.Delay(1000);
+
+                                                throw new Exception("Sample error.");
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                Console.WriteLine(ex.Message);
+                                                }</code></pre>
+
+                                                <p>
+                                                    Exceptions thrown from asynchronous operations should still be handled
+                                                    appropriately.
+                                                </p>
+                                            </section>
+
+                                            <section>
+                                                <h2>Common Mistakes to Avoid</h2>
+
+                                                <ul>
+                                                    <li>Catching every exception without handling it properly.</li>
+                                                    <li>Ignoring exception details.</li>
+                                                    <li>Using exceptions for normal program flow.</li>
+                                                    <li>Leaving catch blocks empty.</li>
+                                                    <li>Exposing sensitive system information to users.</li>
+                                                </ul>
+                                            </section>
+
+                                            <section>
+                                                <h2>Best Practices</h2>
+
+                                                <ul>
+                                                    <li>Catch specific exceptions whenever possible.</li>
+                                                    <li>Log important errors.</li>
+                                                    <li>Use meaningful exception messages.</li>
+                                                    <li>Clean up resources with finally blocks.</li>
+                                                    <li>Validate input before processing.</li>
+                                                    <li>Avoid swallowing exceptions silently.</li>
+                                                </ul>
+                                            </section>
+
+                                            <section>
+                                                <h2>Real-World Examples</h2>
+
+                                                <ul>
+                                                    <li>Validating form submissions.</li>
+                                                    <li>Reading configuration files.</li>
+                                                    <li>Processing API responses.</li>
+                                                    <li>Database operations.</li>
+                                                    <li>File uploads and downloads.</li>
+                                                    <li>Payment processing systems.</li>
+                                                </ul>
+                                            </section>
+                                            <br />
+                                            <section>
+                                                <h2>Frequently Asked Questions</h2>
+
+                                                <h3>What is an exception in C#?</h3>
+
+                                                <p>
+                                                    An exception is a runtime error that interrupts normal program execution.
+                                                </p>
+
+                                                <h3>What is the purpose of try-catch?</h3>
+
+                                                <p>
+                                                    Try-catch blocks allow applications to handle errors gracefully.
+                                                </p>
+
+                                                <h3>What does finally do?</h3>
+
+                                                <p>
+                                                    The finally block executes regardless of whether an exception occurs.
+                                                </p>
+
+                                                <h3>Should I catch all exceptions?</h3>
+
+                                                <p>
+                                                    It's generally better to catch specific exception types whenever possible.
+                                                </p>
+                                            </section>
+
+                                            <section>
+                                                <h2>Related Tutorials</h2>
+
+                                                <ul>
+                                                    <li><a href="what-is-a-thread-in-csharp.html">What Is a Thread in C#?</a></li>
+
+                                                   <li><a href="understanding-tasks-in-dotnet.html">Understanding Tasks in .NET</a></li>
+
+                                                    <li><a href="async-and-await-in-csharp.html">Async and Await in C#</a></li>
+
+                                                    <li><a href="best-csharp-coding-practices.html">Best C# Coding Practices</a></li>
+                      
+                                                    <li><a href="working-with-arrays-csharp.html">Working with Arrays in C#</a> </li>
+                                          
+                                                </ul>
+                                            </section>
+
+                                            <section>
+                                                <h2>Conclusion</h2>
+
+                                                <p>
+                                                    Exception handling is a critical skill for every C# developer.
+                                                    Understanding how to use try, catch, finally, and throw statements
+                                                    helps create applications that are more stable, reliable, and easier
+                                                    to maintain.
+                                                </p>
+
+                                                <p>
+                                                    By following best practices and handling errors thoughtfully, you can
+                                                    build software that responds gracefully to unexpected situations and
+                                                    provides a better experience for users.
+                                                </p>
+                                            </section>
+
+                                        </article>
+
+
+
+            
+            <!-- Bottom Ad -->
+            <div class="ad-container">
+
+                <!-- Replace with AdSense Ad Unit -->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-5 p-4 border-top">
+
+        <div class="footer-links mb-3">
+
+            <a class="footerLink" href="index.html">Home</a> |
+            <a class="footerLink" href="about-us.html">About Us</a> |
+            <a class="footerLink" href="contact.html">Contact</a> |
+            <a class="footerLink" href="privacy.html">Privacy</a> |
+            <a class="footerLink" href="terms-of-service.html">Terms of Service</a> |
+            <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 CSharpHub. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
