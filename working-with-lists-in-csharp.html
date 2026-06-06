@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Working with Lists in C# - Complete List<T> Tutorial for Beginners</title>
+
+    <meta name="description"
+          content="Learn how to use List<T> in C# with practical examples. Add, remove, search, sort, filter, and manage collections efficiently using C# Lists and LINQ.">
+
+    <meta name="keywords"
+          content="Working with Lists in C#, C# List Tutorial, List<T> in C#, C# List Examples, How to Use List in C#, C# Collections Tutorial, Add Remove Items from List C#, Sort List in C#, Search List in C#, Filter List with LINQ, C# Generic Collections, List<T> Methods C#, C# List Performance, C# Programming Tutorial, Learn C# Collections">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="canonical" href="https://csharpdevhub.github.io/tutorial.github.io">
+
+    <!-- Google AdSense -->
+    <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html">
+                    C# Tutorials
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="privacy.html">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms-of-service.html">Terms</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="disclaimer.html">Disclaimer</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+
+            <!-- Top Ad -->
+            <div class="ad-container">
+                <!-- Replace with AdSense Ad Unit -->
+            </div>
+
+
+
+            
+           
+<article class="tutorial-article">
+
+    <header class="article-header">
+        <h1>Working with Lists in C#: Complete List&lt;T&gt; Tutorial</h1>
+
+        <p class="article-meta">
+            Published: June 2026 | Reading Time: 12 Minutes
+        </p>
+
+        <p>
+            The <code>List&lt;T&gt;</code> class is one of the most commonly used collection
+            types in C#. It provides a flexible way to store and manage groups of
+            objects while allowing items to be added, removed, searched, sorted,
+            and modified dynamically.
+        </p>
+
+        <p>
+            Whether you're building web applications, desktop software, APIs,
+            games, or data-processing tools, understanding how to work with lists
+            is an essential skill for every C# developer.
+        </p>
+    </header>
+    <br />
+    <nav class="table-of-contents">
+        <h2>Contents</h2>
+
+        <ul>
+            <li><a href="#what-is-list">What Is List&lt;T&gt;?</a></li>
+            <li><a href="#create-list">Creating a List</a></li>
+            <li><a href="#add-items">Adding Items</a></li>
+            <li><a href="#access-items">Accessing Items</a></li>
+            <li><a href="#looping">Looping Through a List</a></li>
+            <li><a href="#remove-items">Removing Items</a></li>
+            <li><a href="#searching">Searching Lists</a></li>
+            <li><a href="#sorting">Sorting Lists</a></li>
+            <li><a href="#filtering">Filtering with LINQ</a></li>
+            <li><a href="#performance">Performance Tips</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <section id="what-is-list">
+        <h2>What Is List&lt;T&gt;?</h2>
+
+        <p>
+            A List is a generic collection that stores multiple values of the same
+            type. Unlike arrays, lists can grow and shrink dynamically during
+            program execution.
+        </p>
+
+        <pre><code>List&lt;string&gt; names = new List&lt;string&gt;();</code></pre>
+
+        <p>
+            The generic type parameter <code>&lt;T&gt;</code> determines the type of
+            data the list can store.
+        </p>
+    </section>
+
+    <section id="create-list">
+        <h2>Creating a List</h2>
+
+        <p>
+            Before using a list, you must create an instance of the List class.
+        </p>
+
+        <pre><code>using System.Collections.Generic;
+
+            List&lt;string&gt; fruits = new List&lt;string&gt;();</code></pre>
+
+            <p>
+                You can also initialize a list with values.
+            </p>
+
+            <pre><code>List&lt;string&gt; fruits = new List&lt;string&gt;
+                {
+                "Apple",
+                "Banana",
+                "Orange"
+                };</code></pre>
+            </section>
+
+            <section id="add-items">
+                <h2>Adding Items to a List</h2>
+
+                <p>
+                    The <code>Add()</code> method inserts a new item at the end of the list.
+                </p>
+
+                <pre><code>List&lt;string&gt; fruits = new List&lt;string&gt;();
+
+                    fruits.Add("Apple");
+                    fruits.Add("Banana");
+                    fruits.Add("Orange");</code></pre>
+
+                    <p>
+                        You can add as many items as needed because lists automatically resize
+                        when necessary.
+                    </p>
+                </section>
+
+                <section id="access-items">
+                    <h2>Accessing List Items</h2>
+
+                    <p>
+                        List items are accessed using their index position.
+                    </p>
+
+                    <pre><code>Console.WriteLine(fruits[0]);
+                        Console.WriteLine(fruits[1]);</code></pre>
+
+                        <h3>Output</h3>
+
+                        <pre><code>Apple
+                            Banana</code></pre>
+
+                            <p>
+                                Remember that indexing starts at zero.
+                            </p>
+                        </section>
+
+                        <section id="looping">
+                            <h2>Looping Through a List</h2>
+
+                            <p>
+                                The foreach loop is commonly used to process all items in a list.
+                            </p>
+
+                            <pre><code>foreach (string fruit in fruits)
+                                {
+                                Console.WriteLine(fruit);
+                                }</code></pre>
+
+                                <p>
+                                    This approach is simple, readable, and suitable for most situations.
+                                </p>
+                            </section>
+
+                            <section id="remove-items">
+                                <h2>Removing Items</h2>
+
+                                <p>
+                                    Lists provide several methods for removing data.
+                                </p>
+
+                                <pre><code>fruits.Remove("Banana");</code></pre>
+
+                                <p>
+                                    Remove() deletes the first matching item.
+                                </p>
+
+                                <pre><code>fruits.RemoveAt(0);</code></pre>
+
+                                <p>
+                                    RemoveAt() deletes an item based on its index position.
+                                </p>
+
+                                <pre><code>fruits.Clear();</code></pre>
+
+                                <p>
+                                    Clear() removes every item from the list.
+                                </p>
+                            </section>
+
+                            <section id="searching">
+                                <h2>Searching Lists</h2>
+
+                                <p>
+                                    The Contains() method checks whether an item exists in a list.
+                                </p>
+
+                                <pre><code>bool exists = fruits.Contains("Apple");
+
+                                    Console.WriteLine(exists);</code></pre>
+
+                                    <h3>Output</h3>
+
+                                    <pre><code>True</code></pre>
+
+                                    <p>
+                                        You can also find an item's index.
+                                    </p>
+
+                                    <pre><code>int index = fruits.IndexOf("Orange");
+
+                                        Console.WriteLine(index);</code></pre>
+                                    </section>
+
+                                    <section id="sorting">
+                                        <h2>Sorting Lists</h2>
+
+                                        <p>
+                                            Sorting helps organize data in ascending or descending order.
+                                        </p>
+
+                                        <pre><code>fruits.Sort();</code></pre>
+
+                                        <p>
+                                            To reverse the order:
+                                        </p>
+
+                                        <pre><code>fruits.Reverse();</code></pre>
+
+                                        <p>
+                                            Sorting is useful when displaying reports, search results, or user data.
+                                        </p>
+                                    </section>
+
+                                    <section id="filtering">
+                                        <h2>Filtering Lists with LINQ</h2>
+
+                                        <p>
+                                            LINQ makes it easy to filter and transform data.
+                                        </p>
+
+                                        <pre><code>using System.Linq;
+
+                                            List&lt;int&gt; numbers = new List&lt;int&gt;
+                                            {
+                                            10, 20, 30, 40, 50
+                                            };
+
+                                            var results = numbers.Where(n =&gt; n &gt; 25);
+
+                                            foreach (var number in results)
+                                            {
+                                            Console.WriteLine(number);
+                                            }</code></pre>
+
+                                            <h3>Output</h3>
+
+                                            <pre><code>30
+                                                40
+                                                50</code></pre>
+
+                                                <p>
+                                                    LINQ is widely used in modern C# applications because it provides
+                                                    powerful querying capabilities with minimal code.
+                                                </p>
+                                            </section>
+
+                                            <section id="performance">
+                                                <h2>List Performance Tips</h2>
+
+                                                <p>
+                                                    While lists are highly flexible, understanding performance can help
+                                                    you write more efficient applications.
+                                                </p>
+
+                                                <ul>
+                                                    <li>Use List&lt;T&gt; when the collection size may change.</li>
+                                                    <li>Use arrays when the size is fixed.</li>
+                                                    <li>Avoid unnecessary loops.</li>
+                                                    <li>Use LINQ carefully on very large datasets.</li>
+                                                    <li>Reserve capacity when you know the expected size.</li>
+                                                </ul>
+
+                                                <pre><code>List&lt;int&gt; numbers = new List&lt;int&gt;(1000);</code></pre>
+
+                                                <p>
+                                                    Setting an initial capacity can reduce memory reallocations.
+                                                </p>
+                                            </section>
+
+                                            <section>
+                                                <h2>Common List Methods</h2>
+
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Method</th>
+                                                            <th>Description</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Add()</td>
+                                                            <td>Adds an item</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Remove()</td>
+                                                            <td>Removes an item</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>RemoveAt()</td>
+                                                            <td>Removes by index</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Contains()</td>
+                                                            <td>Checks existence</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sort()</td>
+                                                            <td>Sorts items</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Reverse()</td>
+                                                            <td>Reverses order</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Clear()</td>
+                                                            <td>Removes all items</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Count</td>
+                                                            <td>Returns item count</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </section>
+
+                                            <br />
+
+                                            <section id="faq">
+                                                <h2>Frequently Asked Questions</h2>
+
+                                                <h3>What is the difference between an array and a List?</h3>
+                                                <p>
+                                                    Arrays have a fixed size, while lists can grow and shrink dynamically
+                                                    during program execution.
+                                                </p>
+
+                                                <h3>When should I use List&lt;T&gt;?</h3>
+                                                <p>
+                                                    Use lists whenever the number of items may change or when you need
+                                                    built-in methods for searching, sorting, and managing collections.
+                                                </p>
+
+                                                <h3>Are lists slower than arrays?</h3>
+                                                <p>
+                                                    Lists have a small overhead because of their flexibility, but they are
+                                                    efficient for most business and web applications.
+                                                </p>
+
+                                                <h3>Can a list store custom objects?</h3>
+                                                <p>
+                                                    Yes. Lists can store classes, structs, and virtually any data type.
+                                                </p>
+                                            </section>
+
+                                            <section>
+                                                <h2>Conclusion</h2>
+
+                                                <p>
+                                                    The List&lt;T&gt; class is one of the most useful collections available in C#.
+                                                    It provides a simple and efficient way to store, manage, search, sort,
+                                                    and manipulate data.
+                                                </p>
+
+                                                <p>
+                                                    By mastering lists, you'll be better prepared to build scalable .NET
+                                                    applications, process data efficiently, and write cleaner code.
+                                                </p>
+                                            </section>
+
+                                        </article>
+
+
+
+            
+            <!-- Bottom Ad -->
+            <div class="ad-container">
+
+                <!-- Replace with AdSense Ad Unit -->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-5 p-4 border-top">
+
+        <div class="footer-links mb-3">
+
+            <a class="footerLink" href="index.html">Home</a> |
+            <a class="footerLink" href="about-us.html">About Us</a> |
+            <a class="footerLink" href="contact.html">Contact</a> |
+            <a class="footerLink" href="privacy.html">Privacy</a> |
+            <a class="footerLink" href="terms-of-service.html">Terms of Service</a> |
+            <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 CSharpHub. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
