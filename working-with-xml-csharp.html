@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Working with XML in C#</title>
+
+    <meta name="description"
+          content="Learn how to read, write, create, modify, and parse XML in C#. Understand XmlDocument, XDocument, LINQ to XML, XML serialization, and best practices.">
+
+    <meta name="keywords"
+          content="Working with XML in C#, C# XML Tutorial, Read XML in C#, Write XML in C#, Parse XML C#, XML Serialization C#, LINQ to XML Tutorial, XDocument C#, XmlDocument C#, XML File Handling C#, XML Data Processing C#, C# XML Examples">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="canonical" href="https://csharpdevhub.github.io/tutorial.github.io">
+
+    <!-- Google AdSense -->
+    <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html">
+                    C# Tutorials
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="privacy.html">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms-of-service.html">Terms</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="disclaimer.html">Disclaimer</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+
+            <!-- Top Ad -->
+            <div class="ad-container">
+                <!-- Replace with AdSense Ad Unit -->
+            </div>
+
+
+
+            
+          <article class="tutorial-article">
+
+    <header class="article-header">
+
+        <h1>Working with XML in C#: Complete Beginner Guide</h1>
+
+        <p class="article-meta">
+            Published: June 2026 |
+            Category: C# Data Processing |
+            Reading Time: 14 Minutes
+        </p>
+
+        <p>
+            XML (Extensible Markup Language) is a widely used format for storing
+            and exchanging structured data. Although JSON has become popular for
+            web APIs, XML remains common in enterprise systems, configuration files,
+            SOAP services, reporting tools, and data integrations.
+        </p>
+
+        <p>
+            C# provides several powerful ways to work with XML, allowing developers
+            to create, read, update, search, and serialize XML documents efficiently.
+        </p>
+
+        <p>
+            In this tutorial, you'll learn how to work with XML in C# using
+            XmlDocument, XDocument, LINQ to XML, and XML Serialization with
+            practical examples and best practices.
+        </p>
+
+    </header>
+    <br />
+    <div class="note">
+
+        <strong>Topics Covered</strong>
+
+        <ul>
+            <li>What is XML?</li>
+            <li>Creating XML Documents</li>
+            <li>Reading XML Files</li>
+            <li>Writing XML Files</li>
+            <li>XmlDocument</li>
+            <li>XDocument</li>
+            <li>LINQ to XML</li>
+            <li>XML Serialization</li>
+            <li>Common Mistakes</li>
+            <li>Best Practices</li>
+        </ul>
+
+    </div>
+
+    <h2>What Is XML?</h2>
+
+    <p>
+        XML is a text-based format used to represent structured information.
+        Data is organized using tags and nested elements.
+    </p>
+
+    <pre><code>
+        &lt;Product&gt;
+        &lt;Id&gt;1&lt;/Id&gt;
+        &lt;Name&gt;Laptop&lt;/Name&gt;
+        &lt;Price&gt;999.99&lt;/Price&gt;
+        &lt;/Product&gt;
+    </code></pre>
+
+    <p>
+        XML is human-readable and platform-independent, making it useful for
+        exchanging data between systems.
+    </p>
+
+    <h2>Namespaces Required</h2>
+
+    <p>
+        Most XML operations require the following namespaces:
+    </p>
+
+    <pre><code>
+        using System.Xml;
+        using System.Xml.Linq;
+        using System.Xml.Serialization;
+    </code></pre>
+
+    <h2>Creating an XML Document</h2>
+
+    <p>
+        The XDocument class provides a modern way to create XML documents.
+    </p>
+
+    <pre><code>
+        var document = new XDocument(
+        new XElement("Product",
+        new XElement("Id", 1),
+        new XElement("Name", "Laptop"),
+        new XElement("Price", 999.99)
+        )
+        );
+
+        document.Save("product.xml");
+    </code></pre>
+
+    <p>
+        This code creates an XML file and saves it to disk.
+    </p>
+
+    <h2>Reading XML Files</h2>
+
+    <p>
+        Load an existing XML document using XDocument.
+    </p>
+
+    <pre><code>
+        var document =
+        XDocument.Load("product.xml");
+    </code></pre>
+
+    <p>
+        Once loaded, you can access individual elements.
+    </p>
+
+    <pre><code>
+        string name =
+        document.Root?
+        .Element("Name")?
+        .Value ?? "";
+    </code></pre>
+
+    <h2>Writing XML Data</h2>
+
+    <p>
+        XML files can be updated and saved again.
+    </p>
+
+    <pre><code>
+        document.Root?
+        .Element("Price")?
+        .SetValue(1099.99);
+
+        document.Save("product.xml");
+    </code></pre>
+
+    <h2>Using XmlDocument</h2>
+
+    <p>
+        XmlDocument is an older XML API that is still widely used.
+    </p>
+
+    <pre><code>
+        XmlDocument xml =
+        new XmlDocument();
+
+        xml.Load("product.xml");
+    </code></pre>
+
+    <p>
+        Access nodes using SelectSingleNode.
+    </p>
+
+    <pre><code>
+        var node =
+        xml.SelectSingleNode(
+        "//Name");
+
+        Console.WriteLine(node?.InnerText);
+    </code></pre>
+
+    <h2>Using XDocument</h2>
+
+    <p>
+        XDocument is generally easier to use and more readable than XmlDocument.
+    </p>
+
+    <pre><code>
+        var product =
+        document.Root;
+
+        Console.WriteLine(
+        product?.Element("Name")?.Value);
+    </code></pre>
+
+    <h2>Working with Multiple Elements</h2>
+
+    <p>
+        XML often contains collections of records.
+    </p>
+
+    <pre><code>
+        &lt;Products&gt;
+        &lt;Product&gt;
+        &lt;Name&gt;Laptop&lt;/Name&gt;
+        &lt;/Product&gt;
+        &lt;Product&gt;
+        &lt;Name&gt;Mouse&lt;/Name&gt;
+        &lt;/Product&gt;
+        &lt;/Products&gt;
+    </code></pre>
+
+    <p>
+        Retrieve all Product elements.
+    </p>
+
+    <pre><code>
+        var products =
+        document.Descendants("Product");
+    </code></pre>
+
+    <h2>LINQ to XML</h2>
+
+    <p>
+        LINQ makes querying XML documents simple and readable.
+    </p>
+
+    <pre><code>
+        var productNames =
+        document.Descendants("Product")
+        .Select(p =>
+        p.Element("Name")?.Value);
+    </code></pre>
+
+    <p>
+        LINQ allows filtering, sorting, and transforming XML data efficiently.
+    </p>
+
+    <h2>Filtering XML Data</h2>
+
+    <pre><code>
+        var expensiveProducts =
+        document.Descendants("Product")
+        .Where(p =>
+        decimal.Parse(
+        p.Element("Price")!.Value)
+        > 500);
+    </code></pre>
+
+    <h2>XML Serialization</h2>
+
+    <p>
+        Serialization converts C# objects into XML format.
+    </p>
+
+    <pre><code>
+        public class Product
+        {
+        public int Id { get; set; }
+
+        public string Name { get; set; } = "";
+
+        public decimal Price { get; set; }
+        }
+    </code></pre>
+
+    <pre><code>
+        XmlSerializer serializer =
+        new XmlSerializer(
+        typeof(Product));
+    </code></pre>
+
+    <h2>Serialize an Object</h2>
+
+    <pre><code>
+        using FileStream stream =
+        File.Create("product.xml");
+
+        serializer.Serialize(
+        stream,
+        product);
+    </code></pre>
+
+    <h2>Deserialize XML</h2>
+
+    <pre><code>
+        using FileStream stream =
+        File.OpenRead("product.xml");
+
+        Product? product =
+        serializer.Deserialize(stream)
+        as Product;
+    </code></pre>
+
+    <p>
+        Deserialization converts XML back into a C# object.
+    </p>
+
+    <h2>Reading XML from a String</h2>
+
+    <pre><code>
+        string xmlContent =
+        "&lt;Product&gt;&lt;Name&gt;Laptop&lt;/Name&gt;&lt;/Product&gt;";
+
+        var document =
+        XDocument.Parse(xmlContent);
+    </code></pre>
+
+    <h2>Common Beginner Mistakes</h2>
+
+    <ul>
+        <li>Ignoring null checks when reading elements.</li>
+        <li>Using XmlDocument for simple scenarios.</li>
+        <li>Hardcoding file paths.</li>
+        <li>Forgetting exception handling.</li>
+        <li>Using XML when JSON is more appropriate.</li>
+        <li>Not validating XML structure.</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Prefer XDocument for new projects.</li>
+        <li>Use LINQ to XML for queries.</li>
+        <li>Validate XML before processing.</li>
+        <li>Handle missing elements safely.</li>
+        <li>Use serialization for object mapping.</li>
+        <li>Keep XML structures consistent.</li>
+        <li>Use proper exception handling.</li>
+    </ul>
+    <br />
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>Is XML still used today?</h3>
+
+    <p>
+        Yes. XML remains widely used in enterprise applications,
+        SOAP services, configuration files, and legacy systems.
+    </p>
+
+    <h3>Should I use XmlDocument or XDocument?</h3>
+
+    <p>
+        For most modern applications, XDocument is easier to use
+        and generally recommended.
+    </p>
+
+    <h3>What is XML Serialization?</h3>
+
+    <p>
+        XML Serialization converts C# objects into XML and can
+        also recreate objects from XML documents.
+    </p>
+
+    <h3>Can LINQ be used with XML?</h3>
+
+    <p>
+        Yes. LINQ to XML provides a powerful and readable way
+        to query XML documents.
+    </p>
+
+    <h2>Related Tutorials</h2>
+
+    <ul>
+        <li><a href="reading-json-csharp.html">Reading JSON in C#</a></li>    
+        <li><a href="string-manipulation-guide.html">C# String Manipulation Guide</a></li>
+        <li><a href="file-handling-in-aspnet-core.html">File Handling in ASP.NET Core</a></li>
+        <li><a href="using-httpclient-in-csharp.html">Using HttpClient in C#</a></li>
+        <li><a href="linq-cheat-sheet.html">LINQ Cheat Sheet</a></li>
+       <li><a href="working-with-lists-in-csharp.html">Working with Lists in C#</a></li>
+    </ul>
+
+    <h2>Conclusion</h2>
+
+    <p>
+        XML remains an important technology in many enterprise and integration
+        scenarios. Understanding how to read, write, query, and serialize XML
+        gives C# developers valuable skills for working with a wide range of systems.
+    </p>
+
+    <p>
+        By learning XDocument, LINQ to XML, XmlDocument, and XML Serialization,
+        you'll be prepared to handle XML data efficiently in modern .NET applications.
+    </p>
+
+</article>
+
+
+
+            
+            <!-- Bottom Ad -->
+            <div class="ad-container">
+
+                <!-- Replace with AdSense Ad Unit -->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-5 p-4 border-top">
+
+        <div class="footer-links mb-3">
+
+            <a class="footerLink" href="index.html">Home</a> |
+            <a class="footerLink" href="about-us.html">About Us</a> |
+            <a class="footerLink" href="contact.html">Contact</a> |
+            <a class="footerLink" href="privacy.html">Privacy</a> |
+            <a class="footerLink" href="terms-of-service.html">Terms of Service</a> |
+            <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 CSharpHub. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
