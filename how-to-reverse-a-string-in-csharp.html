@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How to Reverse a String in C# - Array.Reverse(), LINQ and Loop Examples</title>
+
+    <meta name="description"
+          content="Learn how to reverse a string in C# using Array.Reverse(), LINQ, loops, and StringBuilder. Compare performance, understand best practices, and see practical examples.">
+
+    <meta name="keywords"
+          content="Reverse String in C#, C# Reverse String, How to Reverse a String in C#, Array.Reverse C#, LINQ Reverse String C#, StringBuilder Reverse String C#, C# String Manipulation, C# String Examples, C# Programming Tutorial, C# String Functions, Reverse String Algorithm C#, C# Beginner Tutorial">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="site.css">
+
+    <link rel="canonical" href="https://csharpdevhub.github.io/tutorial.github.io">
+
+    <!-- Google AdSense -->
+    <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html">
+                    C# Tutorials
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="privacy.html">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms-of-service.html">Terms</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="disclaimer.html">Disclaimer</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+
+            <!-- Top Ad -->
+            <div class="ad-container">
+                <!-- Replace with AdSense Ad Unit -->
+            </div>
+
+
+
+           <article class="tutorial-article">
+
+    <header>
+        <h1>How to Reverse a String in C#</h1>
+
+        <p>
+            Reversing a string is a common programming exercise that helps developers
+            understand arrays, loops, and string manipulation techniques.
+            Although it may seem simple, there are multiple ways to reverse a string
+            in C#, each with different advantages.
+        </p>
+
+        <p>
+            In this guide, you'll learn several practical methods for reversing
+            strings and discover when each approach is most appropriate.
+        </p>
+    </header>
+    <br />
+    <section>
+        <h2>What Does It Mean to Reverse a String?</h2>
+
+        <p>
+            Reversing a string means rearranging its characters in the opposite order.
+        </p>
+
+        <pre><code>Original: Hello
+            Reversed: olleH</code></pre>
+
+            <p>
+                String reversal is commonly used in coding exercises, algorithms,
+                text processing, and interview questions.
+            </p>
+        </section>
+
+        <section>
+            <h2>Method 1: Using Array.Reverse()</h2>
+
+            <p>
+                One of the easiest ways to reverse a string is by converting it into
+                a character array and then using the built-in Array.Reverse() method.
+            </p>
+
+            <pre><code>string text = "Hello";
+
+                char[] characters = text.ToCharArray();
+
+                Array.Reverse(characters);
+
+                string reversed = new string(characters);
+
+                Console.WriteLine(reversed);</code></pre>
+
+                <h3>Output</h3>
+
+                <pre><code>olleH</code></pre>
+
+                <h3>Advantages</h3>
+
+                <ul>
+                    <li>Easy to understand.</li>
+                    <li>Uses built-in .NET functionality.</li>
+                    <li>Suitable for most situations.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Method 2: Using LINQ</h2>
+
+                <p>
+                    LINQ provides a concise way to reverse characters in a string.
+                </p>
+
+                <pre><code>using System.Linq;
+
+                    string text = "Hello";
+
+                    string reversed =
+                    new string(text.Reverse().ToArray());
+
+                    Console.WriteLine(reversed);</code></pre>
+
+                    <h3>Output</h3>
+
+                    <pre><code>olleH</code></pre>
+
+                    <h3>Advantages</h3>
+
+                    <ul>
+                        <li>Short and readable.</li>
+                        <li>Uses modern C# syntax.</li>
+                        <li>Useful for quick operations.</li>
+                    </ul>
+
+                    <p>
+                        Keep in mind that LINQ may introduce additional overhead compared to
+                        lower-level approaches.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Method 3: Using a Loop</h2>
+
+                    <p>
+                        A manual loop provides full control over the reversal process and helps
+                        beginners understand how string manipulation works internally.
+                    </p>
+
+                    <pre><code>string text = "Hello";
+
+                        string reversed = "";
+
+                        for (int i = text.Length - 1; i >= 0; i--)
+                        {
+                        reversed += text[i];
+                        }
+
+                        Console.WriteLine(reversed);</code></pre>
+
+                        <h3>Output</h3>
+
+                        <pre><code>olleH</code></pre>
+
+                        <p>
+                            While educational, repeated string concatenation may be less efficient
+                            for very large strings.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Method 4: Using StringBuilder</h2>
+
+                        <p>
+                            For larger strings, StringBuilder can help reduce unnecessary memory
+                            allocations.
+                        </p>
+
+                        <pre><code>using System.Text;
+
+                            string text = "Hello";
+
+                            StringBuilder builder = new StringBuilder();
+
+                            for (int i = text.Length - 1; i >= 0; i--)
+                            {
+                            builder.Append(text[i]);
+                            }
+
+                            string reversed = builder.ToString();
+
+                            Console.WriteLine(reversed);</code></pre>
+
+                            <h3>Output</h3>
+
+                            <pre><code>olleH</code></pre>
+                        </section>
+
+                        <section>
+                            <h2>Performance Comparison</h2>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Method</th>
+                                        <th>Readability</th>
+                                        <th>Performance</th>
+                                        <th>Best For</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Array.Reverse()</td>
+                                        <td>Excellent</td>
+                                        <td>Very Good</td>
+                                        <td>General Use</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LINQ</td>
+                                        <td>Excellent</td>
+                                        <td>Good</td>
+                                        <td>Short Code</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Loop</td>
+                                        <td>Good</td>
+                                        <td>Moderate</td>
+                                        <td>Learning Purposes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>StringBuilder</td>
+                                        <td>Good</td>
+                                        <td>Excellent</td>
+                                        <td>Large Strings</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section>
+                            <h2>When Would You Reverse a String?</h2>
+
+                            <p>
+                                Although string reversal is often used as a programming exercise,
+                                it can also be useful in practical situations:
+                            </p>
+
+                            <ul>
+                                <li>Algorithm practice.</li>
+                                <li>Palindrome detection.</li>
+                                <li>Data transformation tasks.</li>
+                                <li>Text processing applications.</li>
+                                <li>Technical interviews.</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h2>Best Practices</h2>
+
+                            <ul>
+                                <li>Use Array.Reverse() for simplicity.</li>
+                                <li>Use LINQ when readability is preferred.</li>
+                                <li>Use StringBuilder for larger operations.</li>
+                                <li>Avoid excessive string concatenation in loops.</li>
+                                <li>Choose the method that best fits your application's needs.</li>
+                            </ul>
+                        </section>
+                        <br />
+                        <section>
+                            <h2>Frequently Asked Questions</h2>
+
+                            <h3>Which method is fastest?</h3>
+
+                            <p>
+                                Array.Reverse() and StringBuilder-based approaches generally provide
+                                strong performance for most scenarios.
+                            </p>
+
+                            <h3>Can I reverse a string without converting it to a character array?</h3>
+
+                            <p>
+                                Yes. LINQ and loop-based solutions can reverse strings without directly
+                                calling Array.Reverse().
+                            </p>
+
+                            <h3>Is LINQ recommended for string reversal?</h3>
+
+                            <p>
+                                LINQ is convenient and readable, though it may not always be the most
+                                efficient option for performance-critical applications.
+                            </p>
+
+                            <h3>Why are strings immutable in C#?</h3>
+
+                            <p>
+                                String immutability improves reliability, thread safety, and memory
+                                management within the .NET runtime.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>Conclusion</h2>
+
+                            <p>
+                                There are several ways to reverse a string in C#, including
+                                Array.Reverse(), LINQ, loops, and StringBuilder.
+                                Each technique has strengths depending on your goals and the size
+                                of the data being processed.
+                            </p>
+
+                            <p>
+                                Understanding these approaches improves your knowledge of string
+                                manipulation and helps build a stronger foundation in C# programming.
+                            </p>
+                        </section>
+
+                    </article>
+
+
+
+            
+            <!-- Bottom Ad -->
+            <div class="ad-container">
+
+                <!-- Replace with AdSense Ad Unit -->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="text-center mt-5 p-4 border-top">
+
+        <div class="footer-links mb-3">
+
+            <a class="footerLink" href="index.html">Home</a> |
+            <a class="footerLink" href="about-us.html">About Us</a> |
+            <a class="footerLink" href="contact.html">Contact</a> |
+            <a class="footerLink" href="privacy.html">Privacy</a> |
+            <a class="footerLink" href="terms-of-service.html">Terms of Service</a> |
+            <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 CSharpHub. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
